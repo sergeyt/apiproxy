@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/apiproxy.svg)](https://badge.fury.io/js/apiproxy)
 [![Build Status](https://travis-ci.org/sergeyt/apiproxy.svg)](https://travis-ci.org/sergeyt/apiproxy)
 
 # apiproxy
