@@ -9,7 +9,7 @@ const ignoreResponseHeaders = ['set-cookie', 'content-length'];
 const ignoreHeaders = ['host', 'cookie'];
 const heartbeat = ':heartbeat signal';
 
-function makeRequestOptions(req, url) {
+function makeRequestOptions(req, url, serverPort) {
 	const result = Object.assign(
 		{ url, headers: {} },
 		_.pick(req, 'method', 'query', 'timeout', 'maxRedirects')
@@ -21,13 +21,17 @@ function makeRequestOptions(req, url) {
 		}
 	});
 
-	// Forward the IP of the originating request. This is de-facto proxy behavior.
+	const port = '' + (req.secure ? 443 : serverPort);
+
+	if (req.hostname) {
+		result.headers['x-forwarded-host'] = req.hostname + ':' + port;
+	}
 	if (req.ip) {
 		result.headers['x-forwarded-for'] = req.ip;
 	}
 
 	result.headers['x-forwarded-proto'] = req.secure ? 'https' : 'http';
-	result.headers['x-forwarded-port'] = req.secure ? '443' : '80';
+	result.headers['x-forwarded-port'] = port;
 
 	return result;
 }
@@ -39,7 +43,12 @@ module.exports = function makeProxy(options) {
 	}
 	return (req, res) => {
 		const url = urljoin(base, req.url);
-		const requestOptions = makeRequestOptions(req, url);
+		// console.log('request:', JSON.stringify(
+		// 	_.pick(req, 'hostname', 'port', 'method', 'url', 'headers'),
+		// 	null, 2
+		// ));
+		const requestOptions = makeRequestOptions(req, url, options.serverPort);
+		requestOptions.host = req.host;
 		const apiRequest = req.pipe(request(requestOptions));
 
 		apiRequest.on('error', err => {
@@ -68,6 +77,7 @@ module.exports = function makeProxy(options) {
 
 		apiRequest.on('response', response => {
 			const headers = response.headers;
+			// console.log('response headers:', JSON.stringify(headers, null, 2));
 			_.each(headers, (val, key) => {
 				if (_.contains(ignoreResponseHeaders, key) === false) {
 					res.set(key, val);

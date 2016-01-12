@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const webpack = require('webpack');
 const config = require('./webpack.config');
@@ -8,6 +9,7 @@ const port = 8800;
 const app = express();
 const compiler = webpack(config);
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(process.cwd()));
 
@@ -20,7 +22,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 // proxying of api requests
 const makeProxy = require('./index');
-app.all('/api/*', makeProxy({ port: 3000 }));
+app.all('/api/*', makeProxy({ port: 3000, serverPort: port }));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
