@@ -7,6 +7,6 @@ Express.js middleware to easily proxy REST API requests.
 const express = require('express');
 const app = express();
 // proxying of api requests
-const makeProxy = require('./apiproxy');
+const makeProxy = require('apiproxy');
 app.all('/api/*', makeProxy({ port: 3000 }));
 ```
