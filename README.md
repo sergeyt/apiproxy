@@ -3,7 +3,7 @@ Express.js middleware to easily proxy REST API requests.
 
 ## Usage
 
-```
+```js
 const express = require('express');
 const app = express();
 // proxying of api requests
