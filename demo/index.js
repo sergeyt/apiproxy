@@ -15,7 +15,7 @@ input.change(e => {
 		},
 		onProgress(bytesUploaded, bytesTotal) {
 			const percentage = (bytesUploaded / bytesTotal * 100).toFixed(2);
-			console.log(bytesUploaded, bytesTotal, percentage + '%');
+			console.log(bytesUploaded, bytesTotal, `${percentage}%`);
 		},
 		onSuccess() {
 			input.val('');

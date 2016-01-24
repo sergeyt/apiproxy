@@ -21,10 +21,10 @@ function makeRequestOptions(req, url, serverPort) {
 		}
 	});
 
-	const port = '' + (req.secure ? 443 : serverPort);
+	const port = `${(req.secure ? 443 : serverPort)}`;
 
 	if (req.hostname) {
-		result.headers['x-forwarded-host'] = req.hostname + ':' + port;
+		result.headers['x-forwarded-host'] = `${req.hostname}:${port}`;
 	}
 	if (req.ip) {
 		result.headers['x-forwarded-for'] = req.ip;
@@ -67,9 +67,9 @@ module.exports = function makeProxy(options) {
 					if (s.indexOf(heartbeat) < 0) {
 						console.log('%s', s);
 					}
-					res.write(s + '\n\n');
+					res.write(`${s}\n\n`);
 				} else {
-					res.write(heartbeat + '\n\n');
+					res.write(`${heartbeat}\n\n`);
 				}
 				res.flush();
 			});
