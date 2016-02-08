@@ -1,4 +1,4 @@
-"use strict";
+'use strict'; // eslint-disable-line
 const request = require('request');
 const urljoin = require('urljoin');
 const _ = require('lodash');
