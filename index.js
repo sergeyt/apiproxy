@@ -16,7 +16,7 @@ function makeRequestOptions(req, url, serverPort) {
 	);
 
 	_.each(req.headers, (val, key) => {
-		if (_.contains(ignoreHeaders, key) === false) {
+		if (_.includes(ignoreHeaders, key) === false) {
 			result.headers[key] = val;
 		}
 	});
@@ -79,7 +79,7 @@ module.exports = function makeProxy(options) {
 			const headers = response.headers;
 			// console.log('response headers:', JSON.stringify(headers, null, 2));
 			_.each(headers, (val, key) => {
-				if (_.contains(ignoreResponseHeaders, key) === false) {
+				if (_.includes(ignoreResponseHeaders, key) === false) {
 					res.set(key, val);
 				}
 			});
