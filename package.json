@@ -28,7 +28,7 @@
     "cors": "^2.7.1",
     "eslint": "^2.3.0",
     "eslint-config-airbnb": "^6.1.0",
-    "eslint-plugin-react": "^4.1.0",
+    "eslint-plugin-react": "^4.2.1",
     "express": "^4.13.4",
     "mocha": "^2.4.5",
     "morgan": "^1.7.0",
