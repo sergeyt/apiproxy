@@ -38,7 +38,7 @@
     "webpack-hot-middleware": "^2.13.0"
   },
   "dependencies": {
-    "lodash": "^4.16.4",
+    "lodash": "^4.16.5",
     "request": "^2.76.0",
     "urljoin": "^0.1.5"
   }
