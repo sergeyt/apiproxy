@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "lodash": "^4.16.6",
-    "request": "^2.76.0",
+    "request": "^2.77.0",
     "urljoin": "^0.1.5"
   }
 }
