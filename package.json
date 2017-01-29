@@ -35,7 +35,7 @@
     "tus-js-client": "^1.4.2",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.15.0"
+    "webpack-hot-middleware": "^2.16.0"
   },
   "dependencies": {
     "lodash": "^4.17.4",
