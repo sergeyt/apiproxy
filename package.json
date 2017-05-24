@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^6.10.0",
     "express": "^4.15.0",
     "mocha": "^3.2.0",
-    "morgan": "^1.8.1",
+    "morgan": "^1.8.2",
     "tus-js-client": "^1.4.3",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
